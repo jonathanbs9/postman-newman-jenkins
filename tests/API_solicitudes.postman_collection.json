@@ -18,7 +18,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
+											"pm.test(\"GET - All Request Types - Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
@@ -44,7 +44,7 @@
 											"  ]\r",
 											"}\r",
 											"\r",
-											"pm.test(\"Validate response structure\", () => {\r",
+											"pm.test(\"GET - All Request Types - Validate response structure\", () => {\r",
 											"    pm.response.to.have.jsonSchema(schema);\r",
 											"});\r",
 											"\r",
@@ -93,7 +93,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 201\", function () {\r",
+											"pm.test(\"POST - Request Type - Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
 											"\r",
@@ -114,9 +114,15 @@
 											"  ]\r",
 											"}\r",
 											"\r",
-											"pm.test(\"Validate schema response\", () => {\r",
+											"pm.test(\"POST - Request Type - Validate schema response\", () => {\r",
 											"    pm.response.to.have.jsonSchema(schema);\r",
-											"});"
+											"});\r",
+											"\r",
+											"let resp = pm.response.json()\r",
+											"console.log(resp.id)\r",
+											"\r",
+											"pm.globals.set(\"id\", resp.id)\r",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -128,7 +134,10 @@
 											"var moment = require('moment');\r",
 											"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DDTHH:mm:SS\")));\r",
 											"var currentDate = pm.environment.get('currentdate')\r",
-											"console.log(currentDate)"
+											"console.log(currentDate)\r",
+											"\r",
+											"\r",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -180,7 +189,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
+											"pm.test(\"GET - Request Type by ID - Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
@@ -201,9 +210,19 @@
 											"  ]\r",
 											"}\r",
 											"\r",
-											"pm.test(\"Validate response structure\", () => {\r",
+											"pm.test(\"GET - Request Type by ID - Validate response structure\", () => {\r",
 											"    pm.response.to.have.jsonSchema(schema);\r",
 											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -226,7 +245,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:1323/api/v1/requesttype/1",
+									"raw": "http://localhost:1323/api/v1/requesttype/{{id}}",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -236,7 +255,7 @@
 										"api",
 										"v1",
 										"requesttype",
-										"1"
+										"{{id}}"
 									]
 								}
 							},
