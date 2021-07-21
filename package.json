@@ -1,0 +1,23 @@
+{
+  "name": "postman-newman-jenkins",
+  "version": "1.0.0",
+  "description": "Project for storing Postman tests",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test-api": "newman run tests/API_solicitudes.postman_collection.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanbs9/postman-newman-jenkins.git"
+  },
+  "author": "Jonathan Brull Schroeder",
+  "bugs": {
+    "url": "https://github.com/jonathanbs9/postman-newman-jenkins/issues"
+  },
+  "homepage": "https://github.com/jonathanbs9/postman-newman-jenkins#readme",
+  "dependencies": {
+    "newman": "^5.2.4"
+  }
+}
