@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test-api": "newman run tests/API_solicitudes.postman_collection.json --reporters cli,junit --no-color --reporter-junit-export newman_report.xml"
+    "test-api": "newman run --disable-unicode tests/API_solicitudes.postman_collection.json --reporters cli,junit --reporter-junit-export newman_report.xml"
   },
   "repository": {
     "type": "git",
