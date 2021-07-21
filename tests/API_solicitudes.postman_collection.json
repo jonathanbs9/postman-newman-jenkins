@@ -95,7 +95,40 @@
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const schema = \r",
+											"{\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"name\": {\r",
+											"      \"type\": \"string\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"name\"\r",
+											"  ]\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Validate schema response\", () => {\r",
+											"    pm.response.to.have.jsonSchema(schema);\r",
 											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var moment = require('moment');\r",
+											"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DDTHH:mm:SS\")));\r",
+											"var currentDate = pm.environment.get('currentdate')\r",
+											"console.log(currentDate)"
 										],
 										"type": "text/javascript"
 									}
@@ -117,7 +150,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"{{name}}\"\r\n}",
+									"raw": "{\r\n    \"name\": \"RequestType {{currentdate}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
